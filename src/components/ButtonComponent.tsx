@@ -27,9 +27,10 @@ const ButtonComponent = (props: ButtonComponentProps) => {
             {icon && iconFlex === 'left' && icon}
             <TextComponent
                 text={text}
-                color={textColor}
-                styles={[textStyles, { marginLeft: icon ? 12 : 0 },]}
-                flex={icon && iconFlex === 'right' ? 1 : 0} />
+                color={textColor ?? appColors.white}
+                styles={[textStyles, { marginLeft: icon ? 12 : 0, fontSize: 16},]}
+                flex={icon && iconFlex === 'right' ? 1 : 0}
+                font={fontFamily.medium} />
             {icon && iconFlex === 'right' && icon}
         </TouchableOpacity>
         : <TouchableOpacity>
