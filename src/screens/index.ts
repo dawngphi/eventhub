@@ -1,4 +1,7 @@
+import ForgotPasswordScreen from "./auth/ForgotPasswordScreen";
 import LoginScreen from "./auth/LoginScreen";
+import SignUpScreen from "./auth/SignUpScreen";
+import VerificationScreen from "./auth/VerificationScreen";
 import HomeScreen from "./home/HomeScreen";
 import SplashScreen from "./SplashScreen";
 
@@ -6,5 +9,8 @@ import SplashScreen from "./SplashScreen";
 export{
   HomeScreen,
   LoginScreen,
-  SplashScreen
+  SplashScreen,
+  SignUpScreen,
+  ForgotPasswordScreen,
+  VerificationScreen
 }

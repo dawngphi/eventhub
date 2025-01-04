@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { ButtonComponent, SectionComponent, TextComponent } from '../../../components'
+import { ButtonComponent, SectionComponent, SpaceComponent, TextComponent } from '../../../components'
 import { appColors } from '../../../contants/appColors'
 import { fontFamily } from '../../../contants/fontFamily'
-import { Google } from 'iconsax-react-native'
+import { Facebook, Google } from '../../../assets/svg'
 
 const SocialLoginButtonComponent = () => {
   return (
@@ -18,8 +18,18 @@ const SocialLoginButtonComponent = () => {
         color={appColors.white}
         textColor={appColors.text}
         text='Login with Google'
-        icon = {<Google size={24} color={appColors.primary}/>}
+        textFont={fontFamily.regular}
+        icon = {<Google/>}
         iconFlex='left'/>
+        <ButtonComponent
+        type='primary'
+        color={appColors.white}
+        textColor={appColors.text}
+        text='Login with Facebook'
+        textFont={fontFamily.regular}
+        icon = {<Facebook/>}
+        iconFlex='left'/>
+        
     </SectionComponent>
   )
 }

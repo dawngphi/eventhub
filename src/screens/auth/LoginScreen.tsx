@@ -7,12 +7,22 @@ import { Lock, Sms } from 'iconsax-react-native'
 import { appColors } from '../../contants/appColors'
 import { fontFamily } from '../../contants/fontFamily'
 import SocialLoginButtonComponent from './components/SocialLoginButtonComponent'
+import authenticationAPI from '../../apis/authApi'
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation} : any) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRemember, setIsRemember] = useState(true);
+
+  const handleLogin = async () => {
+    try {
+      const res = await authenticationAPI.HandleAuthentication('/hello');
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <ContainerComponent isImagebackground isScroll>
       <SectionComponent
@@ -57,18 +67,18 @@ const LoginScreen = () => {
             <ButtonComponent 
               text='Forgot Password?' 
               type='text'
-              onPress={() => {}} />
+              onPress={() => navigation.navigate('ForgotPasswordScreen')} />
           </RowComponent>
       </SectionComponent>
       <SpaceComponent height={16} />
-      <SectionComponent>
-        <ButtonComponent text='SIGN IN' type='primary'/>
+      <SectionComponent >
+        <ButtonComponent onPress={handleLogin} text='SIGN IN' type='primary'/>
       </SectionComponent>
       <SocialLoginButtonComponent />
       <SectionComponent>
         <RowComponent justify='center'>
           <TextComponent text='Don’t have an account? ' />
-          <ButtonComponent type='link' text='Sign Up' onPress={() => {}} />
+          <ButtonComponent type='link' text='Sign Up' onPress={() => navigation.navigate('SignUpScreen')} />
         </RowComponent>
       </SectionComponent>
     </ContainerComponent>
