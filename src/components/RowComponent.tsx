@@ -11,7 +11,7 @@ interface RowComponentProps {
 }
 const RowComponent = (props : RowComponentProps) => {
     const { children, styles, justify, onPress } = props;
-    const localStyle = [globalStyle.row, styles, {justifyContent: justify}]
+    const localStyle = [globalStyle.row, styles, {justifyContent: justify }]
     return onPress ? (
         <TouchableOpacity activeOpacity={0.8} onPress={onPress} style = {localStyle}>{children}</TouchableOpacity>
     ) : (

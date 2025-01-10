@@ -17,16 +17,25 @@ interface ButtonComponentProps {
     onPress?: () => void,
     iconFlex?: 'right' | 'left',
     textFont?: string,
+    disabled?: boolean
 }
 
 const ButtonComponent = (props: ButtonComponentProps) => {
 
-    const { icon, text, type, color, styles, textColor, textStyles, onPress, iconFlex, textFont } = props;
-    return (
-        
-        type === 'primary' ? (
-            <View style = {{alignItems: 'center'}}>
-                <TouchableOpacity style={[globalStyle.buttonStyle, globalStyle.shadow, { backgroundColor: color ?? appColors.primary, marginBottom: 17, width: '80%' }, styles]} onPress={onPress}>
+    const { icon, text, type, color, styles, textColor, textStyles, onPress, iconFlex, textFont, disabled } = props;
+    return type === 'primary' ? (
+
+
+        <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity 
+                disabled={disabled} 
+                style={[globalStyle.buttonStyle, globalStyle.shadow, 
+                { backgroundColor: color 
+                    ? color 
+                    : disabled 
+                    ? appColors.gray4 
+                    : appColors.primary, marginBottom: 17, width: '80%' }, styles]} 
+                onPress={onPress}>
                 {icon && iconFlex === 'left' && icon}
                 <TextComponent
                     text={text}
@@ -36,16 +45,14 @@ const ButtonComponent = (props: ButtonComponentProps) => {
                     font={textFont ?? fontFamily.medium} />
                 {icon && iconFlex === 'right' && icon}
             </TouchableOpacity>
-            </View>
-            
-        ) : (
-            <TouchableOpacity onPress={onPress}>
-                <TextComponent text={text} color={type === 'link' ? appColors.primary : appColors.text} />
-            </TouchableOpacity>
-        )
+        </View>
 
-
+    ) : (
+        <TouchableOpacity onPress={onPress}>
+            <TextComponent flex={0} text={text} color={type === 'link' ? appColors.primary : appColors.text} />
+        </TouchableOpacity>
     )
+
 }
 
 export default ButtonComponent

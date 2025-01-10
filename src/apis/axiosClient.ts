@@ -1,9 +1,10 @@
 import axios from "axios";
 import queryString from "query-string";
+import { appInfor } from "../contants/appInfor";
 
 const axiosClient = axios.create({
+    baseURL: appInfor.BASE_URL,
     paramsSerializer: params => queryString.stringify(params)
-
 });
 
 axiosClient.interceptors.request.use(async (config: any) => {

@@ -18,10 +18,11 @@ interface InputComponentProps {
   isPassword?: boolean;
   allowClear?: boolean;
   type?: KeyboardType;
+  onEnd?: () => void;
 }
 const InputComponent = (props: InputComponentProps) => {
 
-  const { value, onChangeText, affix, placeholder, suffix, isPassword, allowClear, type } = props;
+  const { value, onChangeText, affix, placeholder, suffix, isPassword, allowClear, type, onEnd } = props;
   const [isShowPass, setisShowPass] = useState(isPassword ?? false);
 
   return (
@@ -34,7 +35,9 @@ const InputComponent = (props: InputComponentProps) => {
         onChangeText={val => onChangeText(val)}
         secureTextEntry={isShowPass}
         placeholderTextColor='#747688'
-        keyboardType={type ?? 'default'}/>
+        keyboardType={type ?? 'default'}
+        autoCapitalize='none'
+        onEndEditing={onEnd}/>
       {suffix ?? suffix}
       <TouchableOpacity 
         onPress={isPassword ? () => setisShowPass(!isShowPass) : () => onChangeText('')}>
